@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paroki Santa Maria Blitar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Radley&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F1E8;
+            color: #333;
+        }
+        header {
+            background-color: #9B4819;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            font-family: 'Lora', serif;
+        }
+        header img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        nav {
+            background-color: #7E370F;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Radley', serif;
+        }
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            nav {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                width: 250px;
+                height: 100%;
+                transition: left 0.3s ease-in-out;
+                padding-top: 60px;
+                text-align: left;
+            }
+            .close-menu {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                font-size: 25px;
+                color: white;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: start;
+                padding-left: 20px;
+            }
+            nav.active {
+                left: 0;
+            }
+        }
+        main {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 20px;
+        }
+        article {
+            max-width: 700px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+        aside {
+            margin-left: 20px;
+            max-width: 300px;
+        }
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid #7E370F;
+            padding-left: 10px;
+            color: #555;
+        }
+        button {
+            background: #9B4819;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        footer {
+            background: #7E370F;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: 'Lora', serif;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            document.querySelector('nav').classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="logo_paroki.png" alt="Paroki Santa Maria Blitar Logo">
+        <h1>Paroki Santa Maria Blitar</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    <nav>
+        <button class="close-menu" onclick="toggleMenu()">✖</button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Articles</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <article>
+            <img src="church-event.jpg" alt="Church Celebration" style="width:100%; border-radius:5px;">
+            <h2>Lorem Ipsum Dolor Sit Amet</h2>
+            <p>By Admin | February 18, 2025 | <a href="#">Church Events</a></p>
+            
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod, eros nec elementum scelerisque, lorem felis malesuada nunc, eu vehicula nunc lacus non orci.</p>
+            
+            <h3>Subheading Example</h3>
+            <ul>
+                <li><strong>Lorem Ipsum:</strong> Sed ut perspiciatis unde omnis iste natus error.</li>
+                <li><strong>Dolor Sit Amet:</strong> Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</li>
+                <li><strong>Consectetur Adipiscing:</strong> Ut enim ad minima veniam, quis nostrum exercitationem.</li>
+                <li><strong>Proin Euismod:</strong> Quis autem vel eum iure reprehenderit qui in ea voluptate.</li>
+            </ul>
+            
+            <blockquote>“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</blockquote>
+            
+            <h3>Conclusion</h3>
+            <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada.</p>
+            
+            <div>
+                <p>Share this article:</p>
+                <button>Facebook</button>
+                <button>Twitter</button>
+                <button>WhatsApp</button>
+            </div>
+        </article>
+        <aside>
+            <h3>Artikel Terkait</h3>
+            <ul>
+                <li><a href="#">Lorem Ipsum Guide</a></li>
+                <li><a href="#">How to Write Dummy Text</a></li>
+                <li><a href="#">Understanding Placeholder Text</a></li>
+            </ul>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 Paroki Santa Maria Blitar | <a href="#">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
