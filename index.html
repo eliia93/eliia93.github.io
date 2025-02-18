@@ -59,7 +59,7 @@
         }
         @media (max-width: 768px) {
             main {
-                display: flex;
+            display: flex;
             flex-direction: column; /* Changes layout to a vertical stack */
             flex-wrap: wrap;
         }
@@ -69,6 +69,7 @@
             margin-left: 0;
             margin-top: 20px;
         }
+            
             .menu-toggle {
                 display: block;
             }
@@ -117,6 +118,7 @@
             flex-direction: row;
             justify-content: center;
             padding: 20px;
+            gap: 20px;
         }
         article {
             max-width: 700px;
@@ -125,11 +127,9 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             font-family: 'Poppins', sans-serif;
+            flex: 2;
         }
-        aside {
-            margin-left: 20px;
-            max-width: 300px;
-        }
+
         blockquote {
             font-style: italic;
             border-left: 5px solid #7E370F;
