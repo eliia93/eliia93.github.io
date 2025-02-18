@@ -58,6 +58,17 @@
             font-family: 'Radley', serif;
         }
         @media (max-width: 768px) {
+            main {
+                display: flex;
+            flex-direction: column; /* Changes layout to a vertical stack */
+            flex-wrap: wrap;
+        }
+            aside {
+            order: 2; /* Moves aside below article */
+            width: 100%; /* Ensures it takes full width */
+            margin-left: 0;
+            margin-top: 20px;
+        }
             .menu-toggle {
                 display: block;
             }
@@ -89,15 +100,6 @@
             }
             nav.active {
                 left: 0;
-            }
-            main {
-                flex-direction: column;
-            }
-            aside {
-                order: 2;
-                width: 100%;
-                margin-left: 0;
-                margin-top: 20px;
             }
         }
 
