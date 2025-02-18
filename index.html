@@ -90,7 +90,26 @@
             nav.active {
                 left: 0;
             }
+            main {
+                flex-direction: column;
+            }
+            aside {
+                order: 2;
+                width: 100%;
+                margin-left: 0;
+                margin-top: 20px;
+            }
         }
+
+        aside {
+            max-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-family: 'Poppins', sans-serif;
+        }
+
         main {
             display: flex;
             flex-direction: row;
@@ -115,15 +134,21 @@
             padding-left: 10px;
             color: #555;
         }
-        button {
-            background: #9B4819;
+        .share-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .share-buttons a {
+            text-decoration: none;
             color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
+            padding: 10px 15px;
             margin: 5px;
             border-radius: 5px;
+            display: inline-block;
         }
+        .facebook { background: #3b5998; }
+        .twitter { background: #1da1f2; }
+        .instagram { background: #e1306c; }
         footer {
             background: #7E370F;
             color: white;
@@ -157,9 +182,9 @@
     
     <main>
         <article>
-            <img src="church-event.jpg" alt="Church Celebration" style="width:100%; border-radius:5px;">
+            <img src="church-event.jpg" alt="Gambar Artikel" style="width:100%; border-radius:5px;">
             <h2>Lorem Ipsum Dolor Sit Amet</h2>
-            <p>By Admin | February 18, 2025 | <a href="#">Church Events</a></p>
+            <p>By Admin | February 18, 2025 |</p>
             
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod, eros nec elementum scelerisque, lorem felis malesuada nunc, eu vehicula nunc lacus non orci.</p>
             
@@ -176,11 +201,10 @@
             <h3>Conclusion</h3>
             <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada.</p>
             
-            <div>
-                <p>Share this article:</p>
-                <button>Facebook</button>
-                <button>Twitter</button>
-                <button>WhatsApp</button>
+            <div class="share-buttons">
+                <a href="#" class="facebook">Share on Facebook</a>
+                <a href="#" class="twitter">Share on Twitter</a>
+                <a href="#" class="instagram">Share on Instagram</a>
             </div>
         </article>
         <aside>
