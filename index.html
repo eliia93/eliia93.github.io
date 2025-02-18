@@ -1,225 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paroki Santa Maria Blitar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Radley&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <title>Statistik Gereja</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #000;
             margin: 0;
             padding: 0;
-            background-color: #F4F1E8;
-            color: #333;
-        }
-        header {
-            background-color: #9B4819;
-            color: white;
-            padding: 20px;
             text-align: center;
-            position: relative;
-            font-family: 'Lora', serif;
         }
-        header img {
-            width: 100px;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px;
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .menu-toggle {
-            display: none;
-            font-size: 30px;
+        .search-container input {
+            width: 60%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #a0522d;
+            color: white;
             cursor: pointer;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #a0522d;
+            padding: 10px 0;
+            color: white;
+            font-weight: bold;
+        }
+        .summary-container {
+            background-color: #fff;
+            padding: 0px 10px;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            cursor: pointer;
+            color: #a0522d;
             background: none;
             border: none;
-            color: white;
-            position: absolute;
-            top: 20px;
-            left: 20px;
         }
-        nav {
-            background-color: #7E370F;
-            padding: 10px 0;
+        .arrow-left {
+            left: 10px;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            display: flex;
-            justify-content: center;
+        .arrow-right {
+            right: 10px;
         }
-        nav ul li {
-            margin: 0 15px;
+        .count {
+            font-size: 48px;
+            font-weight: bold;
+            color: #6B2E15;
+            margin: 10px 0;
         }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-family: 'Radley', serif;
-        }
-        @media (max-width: 768px) {
-            main {
-            display: flex;
-            flex-direction: column; /* Changes layout to a vertical stack */
-            flex-wrap: wrap;
-        }
-            aside {
-            order: 2; /* Moves aside below article */
-            width: 100%; /* Ensures it takes full width */
-            margin-left: 0;
-            margin-top: 20px;
-        }
-            
-            .menu-toggle {
-                display: block;
-            }
-            nav {
-                position: fixed;
-                left: -250px;
-                top: 0;
-                width: 250px;
-                height: 100%;
-                transition: left 0.3s ease-in-out;
-                padding-top: 60px;
-                text-align: left;
-            }
-            .close-menu {
-                display: block;
-                position: absolute;
-                top: 15px;
-                right: 15px;
-                font-size: 25px;
-                color: white;
-                background: none;
-                border: none;
-                cursor: pointer;
-            }
-            nav ul {
-                flex-direction: column;
-                align-items: start;
-                padding-left: 20px;
-            }
-            nav.active {
-                left: 0;
-            }
+        .summary-container p {
+            font-size: 14px;
+            color: #666;
         }
 
-        aside {
-            max-width: 300px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        main {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            padding: 20px;
-            gap: 20px;
-        }
-        article {
-            max-width: 700px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            font-family: 'Poppins', sans-serif;
-            flex: 2;
-        }
-
-        blockquote {
-            font-style: italic;
-            border-left: 5px solid #7E370F;
-            padding-left: 10px;
-            color: #555;
-        }
-        .share-buttons {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .share-buttons a {
-            text-decoration: none;
+        .summary-header {
+            background-color: #a0522d;
             color: white;
             padding: 10px 15px;
-            margin: 5px;
-            border-radius: 5px;
-            display: inline-block;
-        }
-        .facebook { background: #3b5998; }
-        .twitter { background: #1da1f2; }
-        .instagram { background: #e1306c; }
-        footer {
-            background: #7E370F;
-            color: white;
+            border-radius: 10px 10px 10px 10px;
+            font-weight: bold;
+            width: 80%;
             text-align: center;
-            padding: 10px;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin-top: 20px;
-            font-family: 'Lora', serif;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .menu-container div {
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            padding-bottom: 5px;
+            position: relative;
+        }
+        .menu-container div.active {
+            color: #a0522d;
+        }
+        .menu-container div.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 3px;
+            background-color: #a0522d;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ddd;
+            color: #000;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .button-container button.active {
+            background-color: #a0522d;
+            color: white;
+        }
+       .chart-container {
+            margin-top: 20px;
+            width: 90%;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
         }
     </style>
-    <script>
-        function toggleMenu() {
-            document.querySelector('nav').classList.toggle('active');
-        }
-    </script>
 </head>
 <body>
-    <header>
-        <img src="logo_paroki.png" alt="Paroki Santa Maria Blitar Logo">
-        <h1>Paroki Santa Maria Blitar</h1>
-        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    </header>
-    <nav>
-        <button class="close-menu" onclick="toggleMenu()">✖</button>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Articles</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="search-container">
+        <input type="text" placeholder="Cari...">
+        <button>Cari</button>
+    </div>
     
-    <main>
-        <article>
-            <img src="church-event.jpg" alt="Gambar Artikel" style="width:100%; border-radius:5px;">
-            <h2>Lorem Ipsum Dolor Sit Amet</h2>
-            <p>By Admin | February 18, 2025 |</p>
+    <div class="menu">
+     
+    </div>
+    
+    <div class="summary-container">
+        <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
+        <div class="summary-header">Jumlah Umat Paroki Santa Maria</div>
+        <div class="count">2.848</div>
+        <p>per Januari 2025</p>
+        <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <div class="menu-container">
+        <div id="menuUmur" class="active" onclick="updateChartCategory('umur')">Umur</div>
+        <div id="menuPekerjaan" onclick="updateChartCategory('pekerjaan')">Pekerjaan</div>
+        <div id="menuPendidikan" onclick="updateChartCategory('pendidikan')">Pendidikan</div>
+    </div>
+    
+    <div class="button-container">
+        <button id="btnParoki" class="active" onclick="updateChartRegion('paroki')">Paroki</button>
+        <button id="btnLingkungan" onclick="updateChartRegion('lingkungan')">Lingkungan</button>
+        <button id="btnStasi" onclick="updateChartRegion('stasi')">Stasi</button>
+    </div>
+    
+    <div class="chart-container">
+        <canvas id="statsChart"></canvas>
+    </div>
+    <script>
+        let currentIndex = 0;
+        const stats = [
+            { title: "Jumlah Umat Paroki Santa Maria", count: "2.848", date: "per Januari 2025" },
+            { title: "Jumlah KK", count: "850", date: "per Januari 2025" },
+            { title: "Angka Kelahiran", count: "25", date: "per Januari 2025" },
+            { title: "Angka Kematian", count: "10", date: "per Januari 2025" }
+        ];
+
+        function updateSummary() {
+            document.querySelector(".summary-header").innerText = stats[currentIndex].title;
+            document.querySelector(".count").innerText = stats[currentIndex].count;
+            document.querySelector(".summary-container p").innerText = stats[currentIndex].date;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % stats.length;
+            updateSummary();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + stats.length) % stats.length;
+            updateSummary();
+        }
+    </script>
+    <script>
+        const ctx = document.getElementById('statsChart').getContext('2d');
+        let chart;
+        let currentCategory = 'umur';
+
+        function updateChartCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.menu-container div').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`menu${category.charAt(0).toUpperCase() + category.slice(1)}`).classList.add('active');
+            updateChartRegion('paroki');
+        }
+        
+        function updateChartRegion(region) {
+            let data, title, type, backgroundColors;
             
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod, eros nec elementum scelerisque, lorem felis malesuada nunc, eu vehicula nunc lacus non orci.</p>
+            if (currentCategory === 'umur') {
+                title = "Kelompok Umur";
+                data = [300, 500, 700, 800, 1200, 600];
+                labels = ['Bayi', 'Biak', 'Rekat', 'OMK', 'Dewasa', 'Lansia'];
+                type = 'bar';
+            } else if (currentCategory === 'pekerjaan') {
+                title = "Pekerjaan Jemaat";
+                data = [400, 300, 600, 700, 500];
+                labels = ['PNS', 'Pedagang', 'Karyawan Swasta', 'Ibu Rumah Tangga', 'Wiraswasta'];
+                type = 'bar';
+            } else {
+                title = "Pendidikan Jemaat";
+                data = [350, 450, 600, 900];
+                labels = ['SD', 'SMP', 'SMA', 'Perguruan Tinggi'];
+                type = 'pie';
+                backgroundColors = ['#FF5733', '#33FF57', '#3357FF', '#F3C13A'];
+            }
             
-            <h3>Subheading Example</h3>
-            <ul>
-                <li><strong>Lorem Ipsum:</strong> Sed ut perspiciatis unde omnis iste natus error.</li>
-                <li><strong>Dolor Sit Amet:</strong> Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</li>
-                <li><strong>Consectetur Adipiscing:</strong> Ut enim ad minima veniam, quis nostrum exercitationem.</li>
-                <li><strong>Proin Euismod:</strong> Quis autem vel eum iure reprehenderit qui in ea voluptate.</li>
-            </ul>
+            document.querySelectorAll('.button-container button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn${region.charAt(0).toUpperCase() + region.slice(1)}`).classList.add('active');
             
-            <blockquote>“Lorem ipsum dolor sit amet, consectetur adipiscing elit.”</blockquote>
+            if (chart) {
+                chart.destroy();
+            }
             
-            <h3>Conclusion</h3>
-            <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada.</p>
-            
-            <div class="share-buttons">
-                <a href="#" class="facebook">Share on Facebook</a>
-                <a href="#" class="twitter">Share on Twitter</a>
-                <a href="#" class="instagram">Share on Instagram</a>
-            </div>
-        </article>
-        <aside>
-            <h3>Artikel Terkait</h3>
-            <ul>
-                <li><a href="#">Lorem Ipsum Guide</a></li>
-                <li><a href="#">How to Write Dummy Text</a></li>
-                <li><a href="#">Understanding Placeholder Text</a></li>
-            </ul>
-        </aside>
-    </main>
-    <footer>
-        <p>&copy; 2025 Paroki Santa Maria Blitar | <a href="#">Privacy Policy</a></p>
-    </footer>
+            chart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: title,
+                        data: data,
+                        backgroundColor: currentCategory === 'pendidikan' ? backgroundColors : '#a0522d',
+                        borderRadius: 10,
+                        barThickness: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: currentCategory === 'pendidikan' ? 'x' : 'y',
+                    maintainAspectRatio: false,
+                    scales: currentCategory === 'pendidikan' ? {} : { x: { beginAtZero: true } },
+                    plugins: {
+                        legend: {
+                            display: currentCategory === 'pendidikan'
+                        }
+                    }
+                }
+            });
+        }
+        
+        updateChartCategory('umur');
+        
+    </script>
 </body>
 </html>
