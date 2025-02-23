@@ -186,7 +186,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const beritaCarousel = document.getElementById("beritaCarousel");
     const dotsContainer = document.getElementById("beritaDots");
     let beritaCurrentIndex = 0;
-    let itemsPerSlide = window.innerWidth <= 768 ? 1 : 4; // 1 item on mobile, 4 on desktop
+    let itemsPerSlide = getItemsPerSlide(); // Use function to determine items per slide
+
+    // Function to determine items per slide based on screen width
+    function getItemsPerSlide() {
+        if (window.innerWidth <= 768) return 1; // Mobile: 1 card
+        if (window.innerWidth <= 1024) return 2; // Tablet: 2 cards
+        return 4; // Desktop: 4 cards
+    }
 
     // Simulated agenda data (replace with real API call)
     let agendaData = [
@@ -210,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to generate Berita cards (real or placeholder)
     function generateBeritaCards(data = []) {
         beritaCarousel.innerHTML = ""; // Clear existing cards
-        const totalCards = window.innerWidth <= 768 ? 1 : 4; // Minimum cards to show
+        const totalCards = itemsPerSlide; // Minimum cards to show based on screen size
 
         if (data.length === 0) {
             // If no agenda data, generate placeholder cards
@@ -288,14 +295,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Functions for Berita arrow navigation
+    // Functions for Berita arrow navigation (fixed to handle dynamic card counts)
     function nextBeritaSlide() {
-        beritaCurrentIndex = (beritaCurrentIndex + 1) % Math.ceil(document.querySelectorAll(".berita-card").length / itemsPerSlide);
+        const beritaCards = document.querySelectorAll(".berita-card");
+        const totalSlides = Math.ceil(beritaCards.length / itemsPerSlide);
+        beritaCurrentIndex = (beritaCurrentIndex + 1) % totalSlides;
         moveBeritaCarousel(beritaCurrentIndex);
     }
 
     function prevBeritaSlide() {
-        beritaCurrentIndex = (beritaCurrentIndex - 1 + Math.ceil(document.querySelectorAll(".berita-card").length / itemsPerSlide)) % Math.ceil(document.querySelectorAll(".berita-card").length / itemsPerSlide);
+        const beritaCards = document.querySelectorAll(".berita-card");
+        const totalSlides = Math.ceil(beritaCards.length / itemsPerSlide);
+        beritaCurrentIndex = (beritaCurrentIndex - 1 + totalSlides) % totalSlides;
         moveBeritaCarousel(beritaCurrentIndex);
     }
 
@@ -308,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Adjust items per slide on window resize
     window.addEventListener("resize", () => {
-        itemsPerSlide = window.innerWidth <= 768 ? 1 : 4; // Update to 1 on mobile, 4 on desktop
+        itemsPerSlide = getItemsPerSlide(); // Update items per slide based on screen width
         generateBeritaCards(agendaData); // Regenerate cards on resize
     });
 
