@@ -120,7 +120,7 @@ html {
 /* Hero Content */
 .hero-content {
     text-align: center;
-    padding-top: 20px; /* Additional padding if needed */
+    padding-top: 40px; /* Additional padding if needed */
     position: relative; /* Ensure content stays within hero */
     z-index: 1; /* Slightly above #hero to ensure visibility */
 }
