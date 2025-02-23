@@ -1,0 +1,1095 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Radley&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+/* ======================================================
+   🎨 Root Variables (For Easy Customization)
+   ====================================================== */
+   :root {
+    --primary-color: #9b4819;
+    --secondary-color: #f4f1e8;
+    --sidebar-bg: #ffffff;
+    --text-color: #333;
+    --hover-bg: #f0f0f0;
+    --highlight-color: #d1c4e9;
+    --hero-text-color: #9b4819;
+    --font-heading: 'Radley', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* ======================================================
+   📌 General Resets
+   ====================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Radley', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* ======================================================
+   📌 Smooth Scrolling for Sections
+   ====================================================== */
+html {
+    scroll-behavior: smooth;
+    /*scroll-snap-type: y mandatory;*/
+    overflow-y: scroll;
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    /*scroll-snap-align: start;*/
+    background: var(--secondary-color);
+}
+
+/* ======================================================
+   🏛️ Navigation Bar (Fixed on Top)
+   ====================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--secondary-color);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo */
+.nav-logo {
+        font-family:"radley", serif;
+        font-weight: normal;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* Nav Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+}
+
+/* ======================================================
+   🎆 Hero Section (Slider Below Navbar)
+   ====================================================== */
+   #hero {
+    background: url('img/bg1.jpg') no-repeat center center/cover;
+    color: var(--hero-text-color);
+    flex-direction: column;
+    margin-top: 80px; /* Match or exceed navbar height */
+    height: 100vh; /* Ensure full viewport height */
+    padding: 20px 5%; /* Add padding for content spacing */
+    position: relative; /* Ensure proper stacking */
+    z-index: 0; /* Ensure hero is below navbar */
+    top: 0; /* Reset any inherited positioning */
+}
+
+/* Hero Content */
+.hero-content {
+    text-align: center;
+    padding-top: 20px; /* Additional padding if needed */
+    position: relative; /* Ensure content stays within hero */
+    z-index: 1; /* Slightly above #hero to ensure visibility */
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* 🎆 Hero Section Title Styling */
+.title {
+    font-family: "Carlito", serif;
+    font-size: 3rem;
+    font-weight: normal;
+    color: var(--primary-color);
+    margin-top: 20px;
+}
+
+/* Italic Style for "Gereja Katolik" */
+.title span {
+    display: block;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 2rem;
+    color: #333;
+    line-height: 1;
+}
+
+.verse {
+    font-family: "Roboto", serif;
+    font-size: 1rem;
+    max-width: 600px;
+    margin-top: 30px;
+    line-height: 1.3;
+}
+
+.verse p1 {
+    font-family: "Roboto", serif;
+}
+
+
+/* ======================================================
+   📌 Sidebar Styling (Match Image)
+   ====================================================== */
+  /* Fix Sidebar Position */
+.sidebar {
+    width: 300px;
+    background: var(--secondary-color);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -300px; /* Initially hidden */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out; /* Push content below navbar */
+    overflow-y: auto;
+    z-index: 3000;
+}
+
+/* Show Sidebar When Active */
+.sidebar.active {
+    left: 0;
+}
+
+
+/* ======================================================
+   🔝 Sidebar Header (Title)
+   ====================================================== */
+/* Sidebar Header */
+.sidebar-header {
+    padding: 1.5rem;
+    position: relative;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Sidebar Search Bar */
+.sidebar-search {
+    padding: 10px;
+    background: var(--secondary-color);
+    text-align: center;
+}
+
+.search-box {
+    width: 85%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Sidebar Menu Items */
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* 🔹 Parent Menu Items */
+.sidebar-links li {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+/* ======================================================
+   ❌ Sidebar Close Button (Fix Display)
+   ====================================================== */
+   .close-sidebar {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+/* Hover Effect */
+.close-sidebar:hover {
+    color: #ffdddd;
+}
+
+
+
+/* ======================================================
+   🎨 Icons Styling
+   ====================================================== */
+.icon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: var(--primary-color);
+}
+
+/* ======================================================
+   📂 Submenu Styling (Expands Properly)
+   ====================================================== */
+   .submenu {
+    display: none;
+    list-style: none;
+    padding: 10px;
+    margin: 0; /* Remove default margin */
+    background: rgba(255, 255, 255, 0.1); /* Match your design */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    position: absolute; /* Position relative to .has-submenu */
+    left: 0; /* Align with the left edge of parent */
+    top: 100%; /* Place directly below the parent */
+    width: 100%; /* Match the width of the parent */
+    z-index: 10; /* Ensure it stays above other elements */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    overflow: hidden; /* Ensure smooth transitions */
+    max-height: 0; /* Start collapsed */
+    transition: max-height 0.3s ease-in-out; /* Smooth height transition */
+}
+
+
+/* Expand Submenu When Active */
+.has-submenu {
+    position: relative; /* Establish positioning context for absolute submenu */
+}
+
+.has-submenu.active .submenu {
+    display: block;
+    max-height: 500px; /* Expand to fit content */
+}
+
+/* Submenu Items */
+.submenu li {
+    padding: 10px 15px;
+    font-weight: normal;
+    color: var(--text-color);
+    display: block; /* Stack vertically */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.submenu li:last-child {
+    border-bottom: none;
+}
+
+
+
+.submenu li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+
+.submenu li i {
+    margin-right: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+
+
+/* Submenu Icon (Rotates on Click) */
+.submenu-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* When Submenu is Active */
+.has-submenu.active .submenu-icon {
+    transform: rotate(180deg);
+}
+
+.has-submenu .submenu-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.submenu li:last-child {
+    border-bottom: none;
+}
+
+/* ======================================================
+   🍔 FontAwesome Hamburger Menu - Circular Button
+   ====================================================== */
+   .hamburger-menu {
+    width: 35px;
+    height: 35px;
+    background: var(--primary-color); /* Circle Background */
+    border-radius: 50%; /* Make it a circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 15px;
+    z-index: 2002;
+    border: none;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+    display: none;
+}
+
+/* FontAwesome Icon Inside Button */
+.hamburger-menu i {
+    font-size: 22px;
+    color: white;
+}
+
+/* 🔥 Hover Effect */
+.hamburger-menu:hover {
+    background: #7a3412;
+}
+
+
+
+
+/* ======================================================
+   🌑 Overlay Effect
+   ====================================================== */
+ /* Fix Overlay to Cover the Full Screen */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    display: none;
+    z-index: 2000; /* Below sidebar */
+}
+
+/* Show Overlay When Active */
+.overlay.active {
+    display: block;
+}
+
+
+
+/* ======================================================
+   📱 Responsive Design
+   ====================================================== */
+@media screen and (max-width: 1024px) {
+    .nav-container {
+        flex-direction: column;
+    }
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: var(--secondary-color);
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+
+    .sidebar {
+        width: 300px;
+    }
+
+    .hamburger-menu {
+        left: 15px;
+    }
+
+    #hero {
+        margin-top: 60px; /* Adjust for mobile if navbar height changes */
+    }
+}
+
+/* ======================================================
+   🎠 Stacked Center Carousel Styling (Compact Buttons)
+   ====================================================== */
+   .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 250px;
+    margin: 30px auto 0;
+    overflow: hidden;
+}
+
+/* Carousel Wrapper */
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 📷 Carousel Items (Landscape Images) */
+.carousel-item {
+    position: absolute;
+    width: 300px; /* Landscape Size */
+    height: 200px;
+    overflow: hidden; /* Ensure button stays within item */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* Active (Center) Image */
+.carousel-item.active {
+    transform: scale(1.1);
+    z-index: 3;
+}
+
+/* Left Image (Previous) */
+.carousel-item.prev {
+    transform: translateX(-200px) scale(0.9);
+    z-index: 2;
+    opacity: 0.7;
+}
+
+/* Right Image (Next) */
+.carousel-item.next {
+    transform: translateX(200px) scale(0.9);
+    z-index: 2;
+    opacity: 0.7;
+}
+
+/* 🔹 Carousel Button (Selengkapnya) */
+.carousel-button {
+    position: absolute;
+    bottom: 10px; /* Position near the bottom of the image */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    padding: 8px 16px;
+    background: #555;
+    opacity: 80%;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    z-index: 4; /* Above the image */
+}
+
+.carousel-button:hover {
+    background: #333;
+}
+
+/* 🔹 Compact Carousel Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 87%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent */
+    color: white;
+    border: none;
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Adjust position to be closer to active image */
+.prev-btn {
+    left: 20%;
+}
+
+.next-btn {
+    right: 20%;
+}
+
+/* Button Hover Effect */
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* 🔹 Responsive for Mobile Screens */
+@media screen and (max-width: 768px) {
+    .carousel-container {
+        max-width: 90%;
+        height: 180px;
+    }
+
+    .carousel-item {
+        width: 220px;
+        height: 150px;
+    }
+
+    .carousel-item.prev {
+        transform: translateX(-100px) scale(0.8);
+    }
+
+    .carousel-item.next {
+        transform: translateX(100px) scale(0.8);
+    }
+
+    .carousel-button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .carousel-btn {
+        font-size: 14px;
+        width: 22px;
+        height: 22px;
+    }
+
+    .prev-btn {
+        left: 25%;
+    }
+
+    .next-btn {
+        right: 25%;
+    }
+}
+
+
+
+
+
+/* ======================================================
+   📢 Pengumuman Section Styling (Centered)
+   ====================================================== */
+   #pengumuman {
+    background: var(--secondary-color);
+    padding: 80px 5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+}
+
+.pengumuman-title::after {
+    content: "";
+    width: 150px;
+    height: 2px;
+    background: #7a3412;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -220px;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* 📌 Title - Always on Top of the Section */
+.pengumuman-title {
+    font-family: "lora", serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 60px; /* Space before announcements */
+    line-height:1;
+}
+
+/* 🔹 Pengumuman Container */
+.announcement-container {
+    display: flex;
+    flex-direction: column; /* Default: Stacked on mobile */
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px; /* Limit max width for better design */
+    align-items: center; /* Center items */
+}
+
+/* 🔹 Individual Announcement Item */
+.announcement {
+    display: flex;
+    align-items: center;
+    background: #fdfbf6;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    width: 100%; /* Full width by default */
+    text-align: left;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(30px); /* Start slightly lower */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.announcement.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ======================================================
+   🎬 Staggered Fade-in Animation for Announcements
+   ====================================================== */
+   .announcement {
+    opacity: 0; /* Initially hidden */
+    transform: translateY(30px); /* Start slightly lower */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Staggered animation delays */
+.announcement.show:nth-child(1) {
+    transition-delay: 0.2s;
+}
+
+.announcement.show:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.announcement.show:nth-child(3) {
+    transition-delay: 0.6s;
+}
+
+
+/* Hover Effect */
+.announcement:hover {
+    transform: scale(1.02);
+}
+
+/* 📷 Announcement Image */
+.announcement-image {
+    width: 100px;
+    height: 100px;
+    background: #ccc;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+/* 📜 Announcement Content */
+.announcement-content {
+    padding-left: 15px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* 📌 Announcement Title */
+.announcement-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 📝 Read More Link */
+.read-more {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+/* 🔹 Responsive: Portrait (Vertical) Layout for Medium & Normal Screens */
+@media screen and (min-width: 768px) {
+    .announcement-container {
+        flex-direction: row; /* Arrange items in rows */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .announcement {
+        width: 30%; /* Make cards portrait-sized */
+        flex-direction: column; /* Ensure vertical alignment */
+        text-align: center; /* Center text for portrait mode */
+    }
+
+    .announcement-content {
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+
+/* 🔹 Keep Mobile Layout Like the Image */
+@media screen and (max-width: 767px) {
+    .announcement {
+        flex-direction: row; /* Keep side-by-side layout */
+        width: 100%;
+    }
+
+    .announcement-content {
+        text-align: left; /* Keep text aligned to the left */
+    }
+}
+
+
+
+/* ======================================================
+   📰 Berita Section Styling
+   ====================================================== */
+/* ======================================================
+   📰 BERITA SECTION STYLING
+   ====================================================== */
+
+/* 📌 Berita Section Container */
+#berita {
+    padding: 60px 5%;
+    background: var(--secondary-color);
+    text-align: center;
+}
+
+/* 📌 Berita Title */
+.berita-title {
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px; /* Reduced margin for arrows */
+}
+
+/* 🔹 Title Underline Effect */
+.berita-title::after {
+    content: "";
+    width: 100px;
+    height: 4px;
+    background: var(--primary-color);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -10px;
+    border-radius: 2px;
+}
+
+/* 📌 Berita Container (Holds the Carousel) */
+.berita-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 📌 Berita Carousel (For Scrolling Effect) */
+.berita-carousel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 📌 Individual News Cards */
+.berita-card {
+    width: calc(100% / 4 - 20px); /* Default: 4 cards on desktop (min-width: 769px) */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 🔹 News Card Image */
+.berita-card img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+/* 🔹 News Content */
+.berita-content {
+    padding: 15px;
+    text-align: left;
+}
+
+/* 🔹 News Title */
+.berita-content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* 🔹 News Description */
+.berita-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Read More Button */
+.berita-button {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🔹 Hover Effect */
+.berita-button:hover {
+    background: #7a3412;
+}
+
+/* 📌 Berita Carousel Navigation Arrows */
+.berita-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.berita-btn {
+    position: relative;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent */
+    color: white;
+    border: none;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 5; /* Above carousel but below navbar */
+    margin: 0 10px; /* Space between buttons */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.berita-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: scale(1.1);
+}
+
+/* Responsive Design for Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .berita-card {
+        width: calc(100% - 20px); /* 1 card on mobile, full width minus gap */
+    }
+
+    .berita-btn {
+        font-size: 14px;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* Responsive Design for Desktop (min-width: 769px) */
+@media screen and (min-width: 769px) {
+    .berita-card {
+        width: calc(100% / 4 - 20px); /* 4 cards on desktop */
+    }
+}
+
+/* 📌 Carousel Navigation Dots (Optional: Keep or remove based on preference) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    margin: 5px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.carousel-dot.active {
+    background: var(--primary-color);
+}
+/* ======================================================
+   ⛪ JADWAL MISA SECTION STYLING
+   ====================================================== */
+/* ======================================================
+   ⛪ JADWAL MISA SECTION - FIXED
+   ====================================================== */
+
+/* 📌 Title */
+.jadwal-title {
+    font-size: 2.5rem;
+    font-family: 'Radley', serif;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* 🔹 Title Underline Effect */
+.jadwal-title::after {
+    content: "";
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+}
+
+/* 📌 Container */
+.jadwal-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 📌 Individual Items */
+.jadwal-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+/* 🔹 Icon */
+.jadwal-icon {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+/* 🔹 Content */
+.jadwal-content {
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.jadwal-content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.jadwal-content p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.jadwal-location {
+    font-style: italic;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* 📌 Divider */
+.jadwal-divider {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* 📱 Responsive Design */
+@media screen and (max-width: 768px) {
+    .jadwal-title {
+        font-size: 2rem;
+    }
+
+    .jadwal-title::after {
+        width: 80px;
+    }
+
+    .jadwal-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .jadwal-icon {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* ======================================================
+   📱 RESPONSIVE DESIGN
+   ====================================================== */
+
+
+
+
+
+
+
+
+/* 🖥️ On Larger Screens: Show Submenu on Hover */
+@media screen and (min-width: 769px) {
+    .has-submenu:hover .submenu {
+        display: block;
+    }
+}
+
+/* 📱 On Mobile (Sidebar Mode): Show Submenu on Click */
+@media screen and (max-width: 768px) {
+    .has-submenu.active .submenu {
+        display: block;
+    }
+
+    /* 🔄 Rotate Arrow Icon When Active */
+    .has-submenu.active .submenu-icon {
+        transform: rotate(180deg);
+    }
+}
