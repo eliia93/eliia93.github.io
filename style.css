@@ -58,7 +58,7 @@ html {
     top: 0;
     width: 100%;
     background: var(--secondary-color);
-    padding: 15px 0;
+    padding: 20px 0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     text-align: center;
@@ -128,6 +128,7 @@ html {
 .logo {
     width: 120px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* 🎆 Hero Section Title Styling */
@@ -179,6 +180,8 @@ html {
     transition: left 0.3s ease-in-out; /* Push content below navbar */
     overflow-y: auto;
     z-index: 3000;
+    /* Ensure sidebar has enough space for submenu */
+    padding-bottom: 20px; /* Add padding to prevent cutoff */
 }
 
 /* Show Sidebar When Active */
@@ -270,7 +273,7 @@ html {
 /* ======================================================
    📂 Submenu Styling (Expands Properly)
    ====================================================== */
-.submenu {
+   .submenu {
     display: none;
     list-style: none;
     padding: 10px;
@@ -285,7 +288,8 @@ html {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
     overflow: hidden; /* Ensure smooth transitions */
     max-height: 0; /* Start collapsed */
-    transition: max-height 0.3s ease-in-out; /* Smooth height transition */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth height and opacity transition */
+    opacity: 0; /* Start invisible for smoother transition */
 }
 
 /* Expand Submenu When Active */
@@ -296,6 +300,7 @@ html {
 .has-submenu.active .submenu {
     display: block;
     max-height: 500px; /* Expand to fit content */
+    opacity: 1; /* Become visible */
 }
 
 /* Submenu Items */
@@ -336,8 +341,17 @@ html {
     transform: rotate(180deg);
 }
 
-.has-submenu .submenu-icon {
-    transition: transform 0.3s ease-in-out;
+/* Hover Effect for Desktop (min-width: 769px) */
+@media screen and (min-width: 769px) {
+    .has-submenu:hover .submenu {
+        display: block;
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    .has-submenu:hover .submenu-icon {
+        transform: rotate(180deg);
+    }
 }
 
 /* ======================================================
@@ -600,7 +614,7 @@ html {
 /* ======================================================
    📢 Pengumuman Section Styling (Centered)
    ====================================================== */
-#pengumuman {
+   #pengumuman {
     background: var(--secondary-color);
     padding: 80px 5%;
     text-align: center;
@@ -656,36 +670,38 @@ html {
     transition: transform 0.3s ease-in-out;
     width: 100%; /* Full width by default */
     text-align: left;
+    /* Initial state for sliding animation */
     opacity: 0; /* Initially hidden */
-    transform: translateY(30px); /* Start slightly lower */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Slide from left for odd items, right for even items */
+    transform: translateX(0); /* Default position */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition for both opacity and transform */
 }
 
+/* Show animation (slide in from left for odd, right for even) */
 .announcement.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
-/* ======================================================
-   🎬 Staggered Fade-in Animation for Announcements
-   ====================================================== */
-.announcement {
-    opacity: 0; /* Initially hidden */
-    transform: translateY(30px); /* Start slightly lower */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+/* Odd-numbered announcements slide in from the left */
+.announcement.show:nth-child(odd) {
+    transform: translateX(0); /* End position */
+    transform-origin: left; /* Start from left edge */
 }
 
-/* Staggered animation delays */
-.announcement.show:nth-child(1) {
-    transition-delay: 0.2s;
+/* Even-numbered announcements slide in from the right */
+.announcement.show:nth-child(even) {
+    transform: translateX(0); /* End position */
+    transform-origin: right; /* Start from right edge */
 }
 
-.announcement.show:nth-child(2) {
-    transition-delay: 0.4s;
+/* Initial positions for sliding (before .show is added) */
+.announcement:nth-child(odd) {
+    transform: translateX(-100%); /* Start 100% to the left for odd items */
 }
 
-.announcement.show:nth-child(3) {
-    transition-delay: 0.6s;
+.announcement:nth-child(even) {
+    transform: translateX(100%); /* Start 100% to the right for even items */
 }
 
 /* Hover Effect */
@@ -953,7 +969,7 @@ html {
 /* Responsive Design for Desktop (min-width: 1025px) */
 @media screen and (min-width: 1025px) {
     .berita-card {
-        width: calc(100% / 4 - 20px); /* 4 cards on desktop */
+        width: calc(100% / 3 - 5px); /* 4 cards on desktop */
     }
 }
 
@@ -1009,33 +1025,48 @@ html {
 
 /* 📌 Container */
 .jadwal-container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 0 20px; /* Add horizontal padding for better spacing */
 }
 
 /* 📌 Individual Items */
 .jadwal-item {
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertically center icon and content on desktop */
     width: 100%;
     padding: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Increase margin for better spacing between items */
+    background: #ffffff; /* White background for contrast with secondary-color */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease-in-out; /* Add hover effect */
 }
 
-/* 🔹 Icon */
+/* Hover Effect for Jadwal Item */
+.jadwal-item:hover {
+    transform: scale(1.02); /* Slight scale on hover for interactivity */
+}
+
+/* 🔹 Icon (Misa Icon) */
 .jadwal-icon {
     width: 50px;
     height: auto;
-    margin-right: 15px;
+    margin-right: 20px; /* Increase margin for better spacing beside content */
+    flex-shrink: 0; /* Prevent icon from shrinking */
 }
 
 /* 🔹 Content */
 .jadwal-content {
-    flex-grow: 1;
-    padding-left: 10px;
+    flex-grow: 1; /* Allow content to grow and fill available space */
+    padding-left: 10px; /* Remove left padding since margin on icon handles spacing */
+    text-align: left; /* Left-align text for readability */
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .jadwal-content h3 {
+    font-family: var(--font-body); /* Use Poppins for consistency */
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--primary-color);
@@ -1043,12 +1074,20 @@ html {
 }
 
 .jadwal-content p {
+    font-family: var(--font-body); /* Use Poppins for consistency */
     font-size: 1rem;
     color: #333;
     margin-bottom: 5px;
+    line-height: 1.4; /* Improve readability with line spacing */
 }
 
+.thin-line {
+    border-top: 1px solid #818080;
+    margin-top: 1rem;
+  }
+
 .jadwal-location {
+    font-family: var(--font-body); /* Use Poppins for consistency */
     font-style: italic;
     color: #555;
     font-size: 0.9rem;
@@ -1062,7 +1101,7 @@ html {
     margin: 10px 0;
 }
 
-/* 📱 Responsive Design */
+/* 📱 Responsive Design for Mobile (max-width: 768px) */
 @media screen and (max-width: 768px) {
     .jadwal-misa-title {
         font-size: 24px; /* Reduce for mobile */
@@ -1074,12 +1113,20 @@ html {
     }
 
     .jadwal-item {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column; /* Stack icon above content on mobile */
+        text-align: center; /* Center text for mobile readability */
+        padding: 10px; /* Reduce padding for smaller screens */
+        margin-bottom: 15px; /* Reduce margin for mobile */
     }
 
     .jadwal-icon {
-        margin-bottom: 10px;
+        margin-right: 0; /* Remove right margin on mobile */
+        margin-bottom: 10px; /* Add bottom margin to separate icon from content */
+    }
+
+    .jadwal-content {
+        padding-left: 0; /* Remove left padding on mobile */
+        text-align: center; /* Center text on mobile */
     }
 
     #hero {
