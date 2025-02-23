@@ -1,283 +1,311 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistik Gereja</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            color: #000;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        .search-container {
-            display: flex;
-            justify-content: center;
-            padding: 10px;
-            background-color: #fff;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .search-container input {
-            width: 60%;
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-        }
-        .search-container button {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #a0522d;
-            color: white;
-            cursor: pointer;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            background-color: #a0522d;
-            padding: 10px 0;
-            color: white;
-            font-weight: bold;
-        }
-        .summary-container {
-            background-color: #fff;
-            padding: 0px 10px;
-            margin: 20px auto;
-            width: 80%;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            cursor: pointer;
-            color: #a0522d;
-            background: none;
-            border: none;
-        }
-        .arrow-left {
-            left: 10px;
-        }
-        .arrow-right {
-            right: 10px;
-        }
-        .count {
-            font-size: 48px;
-            font-weight: bold;
-            color: #6B2E15;
-            margin: 10px 0;
-        }
-        .summary-container p {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .summary-header {
-            background-color: #a0522d;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 10px 10px 10px 10px;
-            font-weight: bold;
-            width: 80%;
-            text-align: center;
-        }
-
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-        }
-        .menu-container div {
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            padding-bottom: 5px;
-            position: relative;
-        }
-        .menu-container div.active {
-            color: #a0522d;
-        }
-        .menu-container div.active::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            width: 100%;
-            height: 3px;
-            background-color: #a0522d;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .button-container button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ddd;
-            color: #000;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .button-container button.active {
-            background-color: #a0522d;
-            color: white;
-        }
-       .chart-container {
-            margin-top: 20px;
-            width: 90%;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-    </style>
-</head>
+    <head>
+        <!-- ✅ Meta Tags -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- ✅ Title -->
+        <title>Paroki Santa Maria Blitar</title>
+    
+        <!-- ✅ Correct FontAwesome Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+        <!-- ✅ External CSS -->
+        <link rel="stylesheet" href="style.css">
+    </head>
+    
 <body>
-    <div class="search-container">
-        <input type="text" placeholder="Cari...">
-        <button>Cari</button>
+
+    <!-- 🍔 Hamburger Menu Button (Mobile View) -->
+  <!-- 🍔 FontAwesome Hamburger Menu Button -->
+<button class="hamburger-menu" id="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</button>
+
+
+    <!-- 🌑 Overlay (For Sidebar) -->
+    <div class="overlay" id="overlay"></div>
+
+   <!-- 📌 Sidebar Menu -->
+<aside class="sidebar" id="sidebar">
+    <!-- 🔝 Sidebar Header with Close Button -->
+    <div class="sidebar-header">
+        <h2></h2>
+        <button class="close-sidebar" id="close-sidebar">
+            <i class="fas fa-times"></i> <!-- Close Icon -->
+        </button>
     </div>
+
+    <!-- 🔎 Search Bar -->
+    <div class="sidebar-search">
+        <input type="text" id="sidebar-search-input" class="search-box" placeholder="Search...">
+    </div>
+
+    <!-- 📂 Sidebar Links -->
+    <ul class="sidebar-links">
+        <li>
+            <a href="#"><i class="fas fa-home icon"></i> Beranda</a>
+        </li>
     
-    <div class="menu">
-     
-    </div>
+        <!-- Submenu Parent (Click to Expand in Sidebar) -->
+        <li class="has-submenu">
+            <a href="#"><i class="fas fa-bullhorn icon"></i> Sekretariat <i class="fas fa-chevron-down submenu-icon"></i></a>
+            <ul class="submenu">
+                <li><a href="#">Baptis</a></li>
+                <li><a href="#">Komuni Pertama</a></li>
+                <li><a href="#">Krisma</a></li>
+                <li><a href="#">Pernikahan</a></li>
+                <li><a href="#">Tobat</a></li>
+                <li><a href="#">Perminyakan</a></li>
+                <li><a href="#">Informasi</a></li>
+            </ul>
+        </li>
     
-    <div class="summary-container">
-        <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
-        <div class="summary-header">Jumlah Umat Paroki Santa Maria</div>
-        <div class="count">2.848</div>
-        <p>per Januari 2025</p>
-        <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
-    </div>
+        <li>
+            <a href="#"><i class="fas fa-newspaper icon"></i> Gua Maria <i class="fas fa-chevron-down submenu-icon"></i></a>
+            <ul class="submenu">
+                <li><a href="#">Informasi</a></li>
+                <li><a href="#">Griya Hening</a></li>
+                <li><a href="#">Sejarah</a></li>
+            </ul>
+        </li>
 
-    <div class="menu-container">
-        <div id="menuUmur" class="active" onclick="updateChartCategory('umur')">Umur</div>
-        <div id="menuPekerjaan" onclick="updateChartCategory('pekerjaan')">Pekerjaan</div>
-        <div id="menuPendidikan" onclick="updateChartCategory('pendidikan')">Pendidikan</div>
-    </div>
+        <li>
+            <a href="#"><i class="fas fa-newspaper icon"></i> Berita </a>
+        </li>
+
+        <li>
+            <a href="#"><i class="fas fa-newspaper icon"></i> Pengumuman </i></a>
+        </li>
+
+        <li>
+            <a href="#"><i class="fas fa-newspaper icon"></i> Pastoral <i class="fas fa-chevron-down submenu-icon"></i></a>
+            <ul class="submenu">
+                <li><a href="#">DPP</a></li>
+                <li><a href="#">BGKP</a></li>
+                <li><a href="#">Lingkungan</a></li>
+                <li><a href="#">Stasi</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#"><i class="fas fa-newspaper icon"></i> Tentang <i class="fas fa-chevron-down submenu-icon"></i></a>
+            <ul class="submenu">
+                <li><a href="#">Sejarah Paroki</a></li>
+                <li><a href="#">Peta Wilayah</a></li>
+                <li><a href="#">Tentang</a></li>
+            </ul>
+        </li>
+    </ul>
     
-    <div class="button-container">
-        <button id="btnParoki" class="active" onclick="updateChartRegion('paroki')">Paroki</button>
-        <button id="btnLingkungan" onclick="updateChartRegion('lingkungan')">Lingkungan</button>
-        <button id="btnStasi" onclick="updateChartRegion('stasi')">Stasi</button>
-    </div>
-    
-    <div class="chart-container">
-        <canvas id="statsChart"></canvas>
-    </div>
-    <script>
-        let currentIndex = 0;
-        const stats = [
-            { title: "Jumlah Umat Paroki Santa Maria", count: "2.848", date: "per Januari 2025" },
-            { title: "Jumlah KK", count: "850", date: "per Januari 2025" },
-            { title: "Angka Kelahiran", count: "25", date: "per Januari 2025" },
-            { title: "Angka Kematian", count: "10", date: "per Januari 2025" }
-        ];
+</aside>
 
-        function updateSummary() {
-            document.querySelector(".summary-header").innerText = stats[currentIndex].title;
-            document.querySelector(".count").innerText = stats[currentIndex].count;
-            document.querySelector(".summary-container p").innerText = stats[currentIndex].date;
-        }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % stats.length;
-            updateSummary();
-        }
+    <!-- 🏛️ Navigation Bar (Fixed on Top) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Paroki Santa Maria Blitar</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#sekretariat">Sekretariat</a></li>
+                <li><a href="#gms">Gua Maria</a></li>
+                <li><a href="#jadwal-misa">Berita</a></li>
+                <li><a href="#jadwal-misa">Pengumuman</a></li>
+                <li><a href="#jadwal-misa">Tentang</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + stats.length) % stats.length;
-            updateSummary();
-        }
-    </script>
-    <script>
-        const ctx = document.getElementById('statsChart').getContext('2d');
-        let chart;
-        let currentCategory = 'umur';
-
-        function updateChartCategory(category) {
-            currentCategory = category;
-            document.querySelectorAll('.menu-container div').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`menu${category.charAt(0).toUpperCase() + category.slice(1)}`).classList.add('active');
-            updateChartRegion('paroki');
-        }
+    <!-- 🌟 Main Sections -->
+    <main>
+        <!-- 🎆 Hero Section -->
+        <section id="hero" class="section">
+            <div class="hero-content">
+                <img src="img/logo.png" alt="Paroki Logo" class="logo">
+                <h1 class="title">
+                    <span>Gereja Katolik</span>
+                    Santa Maria Blitar
+                </h1>
+                
+                <p class="verse">
+                    "Dan pengharapan tidak mengecewakan, karena kasih Allah telah dicurahkan di dalam hati kita oleh Roh Kudus yang telah dikaruniakan kepada kita"
+                    <br><br><p1>Roma 5:5</p1>
+                </p>
         
-        function updateChartRegion(region) {
-            let data, title, type, backgroundColors;
-            
-            if (currentCategory === 'umur') {
-                title = "Kelompok Umur";
-                data = [300, 500, 700, 800, 1200, 600];
-                labels = ['Bayi', 'Biak', 'Rekat', 'OMK', 'Dewasa', 'Lansia'];
-                type = 'bar';
-            } else if (currentCategory === 'pekerjaan') {
-                title = "Pekerjaan Jemaat";
-                data = [400, 300, 600, 700, 500];
-                labels = ['PNS', 'Pedagang', 'Karyawan Swasta', 'Ibu Rumah Tangga', 'Wiraswasta'];
-                type = 'bar';
-            } else {
-                title = "Pendidikan Jemaat";
-                data = [350, 450, 600, 900];
-                labels = ['SD', 'SMP', 'SMA', 'Perguruan Tinggi'];
-                type = 'pie';
-                backgroundColors = ['#FF5733', '#33FF57', '#3357FF', '#F3C13A'];
-            }
-            
-            document.querySelectorAll('.button-container button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn${region.charAt(0).toUpperCase() + region.slice(1)}`).classList.add('active');
-            
-            if (chart) {
-                chart.destroy();
-            }
-            
-            chart = new Chart(ctx, {
-                type: type,
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: title,
-                        data: data,
-                        backgroundColor: currentCategory === 'pendidikan' ? backgroundColors : '#a0522d',
-                        borderRadius: 10,
-                        barThickness: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    indexAxis: currentCategory === 'pendidikan' ? 'x' : 'y',
-                    maintainAspectRatio: false,
-                    scales: currentCategory === 'pendidikan' ? {} : { x: { beginAtZero: true } },
-                    plugins: {
-                        legend: {
-                            display: currentCategory === 'pendidikan'
-                        }
-                    }
-                }
-            });
-        }
+                <!-- 🎠 Stacked Center Carousel -->
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-item active">
+                            <img src="https://picsum.photos/800/300?random=1" alt="Carousel Image 1">
+                            <button class="carousel-button" onclick="goToDetail('detail1')">Selengkapnya</button>
+                        </div>
+                        <div class="carousel-item next">
+                            <img src="https://picsum.photos/800/300?random=2" alt="Carousel Image 2">
+                            <button class="carousel-button" onclick="goToDetail('detail2')">Selengkapnya</button>
+                        </div>
+                        <div class="carousel-item prev">
+                            <img src="https://picsum.photos/800/300?random=3" alt="Carousel Image 3">
+                            <button class="carousel-button" onclick="goToDetail('detail3')">Selengkapnya</button>
+                        </div>
+                    </div>
+                </div>
         
-        updateChartCategory('umur');
+                <!-- Carousel Controls -->
+                <button class="carousel-btn prev-btn" onclick="prevSlide()">❮</button>
+                <button class="carousel-btn next-btn" onclick="nextSlide()">❯</button>
+            </div>
+        </section>
         
-    </script>
+        
+
+        <!-- 📢 Pengumuman Section -->
+        <section id="pengumuman" class="section">
+            <h1 class="pengumuman-title">Berita</h1> <!-- 🔹 Title at the Top of Section -->
+        
+            <div class="announcement-container">
+                <!-- Pengumuman Item 1 -->
+                <div class="announcement">
+                    <div class="announcement-image"></div>
+                    <div class="announcement-content">
+                        <h3 class="announcement-title">Title</h3>
+                        <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
+                        <a href="#" class="read-more">Baca selengkapnya...</a>
+                    </div>
+                </div>
+        
+                <!-- Pengumuman Item 2 -->
+                <div class="announcement">
+                    <div class="announcement-image"></div>
+                    <div class="announcement-content">
+                        <h3 class="announcement-title">Title</h3>
+                        <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
+                        <a href="#" class="read-more">Baca selengkapnya...</a>
+                    </div>
+                </div>
+        
+                <!-- Pengumuman Item 3 -->
+                <div class="announcement">
+                    <div class="announcement-image"></div>
+                    <div class="announcement-content">
+                        <h3 class="announcement-title">Title</h3>
+                        <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
+                        <a href="#" class="read-more">Baca selengkapnya...</a>
+                    </div>
+                </div>
+
+                <!-- Pengumuman Item 4 -->
+                <div class="announcement">
+                    <div class="announcement-image"></div>
+                    <div class="announcement-content">
+                        <h3 class="announcement-title">Title</h3>
+                        <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
+                        <a href="#" class="read-more">Baca selengkapnya...</a>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        
+        
+
+        <!-- 📰 Berita Section -->
+        <section id="berita" class="section">
+            <h2 class="berita-title"></h2>
+        <!-- Add Berita Carousel Navigation Arrows -->
+            <div class="berita-container">
+                <div class="berita-carousel">
+                    <!-- News Card 1 -->
+                    <div class="berita-card">
+                        <img src="img/peng1.jpg" alt="News 1">
+                        <div class="berita-content">
+                            <h3>Misa Bersama </h3>
+                            <p>Tes page...</p>
+                            <button class="berita-button">Baca Pengumuman</button>
+                        </div>
+                    </div>
+        
+                    <!-- News Card 2 -->
+                    <div class="berita-card">
+                        <img src="img/peng1.jpg" alt="News 2">
+                        <div class="berita-content">
+                            <h3>Kegiatan...</h3>
+                            <p>Tes page...</p>
+                            <button class="berita-button">Baca Pengumuman</button>
+                        </div>
+                    </div>
+        
+                    <!-- Additional news cards -->
+                    <div class="berita-card">
+                        <img src="img/peng1.jpg" alt="News 3">
+                        <div class="berita-content">
+                            <h3>Kegiatan Sosial di Paroki</h3>
+                            <p>Tes page...</p>
+                            <button class="berita-button">Baca Pengumuman</button>
+                        </div>
+                    </div>
+
+                    <div class="berita-card">
+                        <img src="img/peng1.jpg" alt="News 3">
+                        <div class="berita-content">
+                            <h3>Pelatihan di Paroki</h3>
+                            <p>Tes page...</p>
+                            <button class="berita-button">Baca Pengumuman</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Carousel Pagination Dots -->
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+        
+
+        <section id="jadwal-misa" class="section">
+        
+            <div class="jadwal-container">
+                <!-- Mass Schedule Item 1 -->
+                <div class="jadwal-item">
+                    <img src="img/misa_harian.png" alt="Misa Icon" class="jadwal-icon">
+                    <div class="jadwal-content">
+                        <h3>Misa Harian</h3>
+                        <p>Senin - Kamis, dan Sabtu<br>
+                           Pukul : 05.30 WIB<br>
+                           Jumat : 17.30 WIB</p>
+                        <p class="jadwal-location">Gereja Santa Maria Blitar</p>
+                    </div>
+                </div>
+        
+                <!-- Mass Schedule Item 2 -->
+                <div class="jadwal-item">
+                    <img src="img/misa_harian.png" alt="Misa Icon" class="jadwal-icon">
+                    <div class="jadwal-content">
+                        <h3>Misa Harian</h3>
+                        <p>Senin - Kamis, dan Sabtu<br>
+                           Pukul : 05.30 WIB<br>
+                           Jumat : 17.30 WIB</p>
+                        <p class="jadwal-location">Gereja Santa Maria Blitar</p>
+                    </div>
+                </div>
+        
+                <!-- Mass Schedule Item 3 -->
+                <div class="jadwal-item">
+                    <img src="img/misa_harian.png" alt="Misa Icon" class="jadwal-icon">
+                    <div class="jadwal-content">
+                        <h3>Misa Harian</h3>
+                        <p>Senin - Kamis, dan Sabtu<br>
+                           Pukul : 05.30 WIB<br>
+                           Jumat : 17.30 WIB</p>
+                        <p class="jadwal-location">Gereja Santa Maria Blitar</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- ✅ External JavaScript -->
+    <script src="scripts.js"></script>
+
 </body>
 </html>
