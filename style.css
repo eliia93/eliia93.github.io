@@ -127,13 +127,12 @@ html {
 
 .logo {
     width: 120px;
-    margin-bottom: 20px;
     margin-top: 20px;
 }
 
 /* 🎆 Hero Section Title Styling */
 .title {
-    font-family: "Carlito", serif;
+    font-family: "radley", sans-serif;
     font-size: 3rem;
     font-weight: normal;
     color: var(--primary-color);
@@ -143,9 +142,9 @@ html {
 /* Italic Style for "Gereja Katolik" */
 .title span {
     display: block;
-    font-family: 'Lora', serif;
+    font-family: "Lora", serif;
     font-style: italic;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 2rem;
     color: #333;
     line-height: 1;
@@ -614,6 +613,11 @@ html {
 /* ======================================================
    📢 Pengumuman Section Styling (Centered)
    ====================================================== */
+/* ... (Previous CSS remains unchanged until #pengumuman section) ... */
+
+/* ======================================================
+   📢 Pengumuman Section Styling (Centered)
+   ====================================================== */
    #pengumuman {
     background: var(--secondary-color);
     padding: 80px 5%;
@@ -652,24 +656,26 @@ html {
 /* 🔹 Pengumuman Container */
 .announcement-container {
     display: flex;
-    flex-direction: column; /* Default: Stacked on mobile */
-    gap: 20px;
+    flex-direction: column; /* Stack cards vertically on all devices */
+    gap: 20px; /* Consistent 20px gap between cards */
     width: 100%;
     max-width: 1000px; /* Limit max width for better design */
-    align-items: center; /* Center items */
+    align-items: center; /* Center cards horizontally */
+    padding: 0 5%; /* Add side padding for mobile/tablet, reduce on desktop if needed */
 }
 
 /* 🔹 Individual Announcement Item */
 .announcement {
     display: flex;
-    align-items: center;
-    background: #fdfbf6;
+    flex-direction: row; /* Use row layout on all devices */
+    align-items: center; /* Vertically center image and content */
+    background: #ffffff; /* White background to match screenshot */
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    width: 100%; /* Full width by default */
-    text-align: left;
+    width: 100%; /* Full width on all devices */
+    text-align: left; /* Left-align text on all devices */
     /* Initial state for sliding animation */
     opacity: 0; /* Initially hidden */
     /* Slide from left for odd items, right for even items */
@@ -713,66 +719,80 @@ html {
 .announcement-image {
     width: 100px;
     height: 100px;
-    background: #ccc;
-    border-radius: 10px;
+    background: #ccc; /* Grey placeholder to match screenshot */
+    border-radius: 10px; /* Rounded corners to match screenshot */
     flex-shrink: 0;
+    margin-right: 15px; /* Consistent spacing between image and content on all devices */
 }
 
 /* 📜 Announcement Content */
 .announcement-content {
-    padding-left: 15px;
-    text-align: left;
-    flex-grow: 1;
+    padding-left: 0; /* Remove left padding since margin on image handles spacing */
+    flex-grow: 1; /* Allow content to grow and fill space */
+    text-align: left; /* Left-align text on all devices */
 }
 
 /* 📌 Announcement Title */
 .announcement-title {
-    font-size: 18px;
+    font-family: var(--font-body); /* Use Poppins for consistency */
+    font-size: 1.2rem; /* Larger title to match screenshot */
     font-weight: bold;
-    margin-bottom: 5px;
+    color: #000; /* Black text to match screenshot */
+    margin-bottom: 5px; /* Reduce space below title */
 }
 
-/* 📝 Read More Link */
+/* 📝 Announcement Body Text */
+.announcement-body {
+    font-family: var(--font-body); /* Use Poppins for consistency */
+    font-size: 0.9rem; /* Smaller, lighter text to match screenshot */
+    color: #666; /* Grey text to match screenshot */
+    line-height: 1.5; /* Improve readability with line spacing */
+    margin-bottom: 10px; /* Space below body text */
+}
+
+/* 🔹 Read More Link */
 .read-more {
-    font-size: 14px;
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
+    font-family: var(--font-body); /* Use Poppins for consistency */
+    font-size: 0.9rem; /* Match body text size */
+    color: #666; /* Grey text to match screenshot */
+    text-decoration: none; /* Remove underline */
+    font-weight: normal; /* Not bold, to match screenshot */
+    display: block; /* Ensure block-level for centering */
+    margin: 0 auto; /* Center the link horizontally */
+    transition: color 0.3s ease-in-out; /* Smooth hover effect */
 }
 
-/* 🔹 Responsive: Portrait (Vertical) Layout for Medium & Normal Screens */
-@media screen and (min-width: 768px) {
-    .announcement-container {
-        flex-direction: row; /* Arrange items in rows */
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .announcement {
-        width: 30%; /* Make cards portrait-sized */
-        flex-direction: column; /* Ensure vertical alignment */
-        text-align: center; /* Center text for portrait mode */
-    }
-
-    .announcement-content {
-        text-align: center;
-        padding: 10px 0;
-    }
+.read-more:hover {
+    color: #333; /* Darker grey on hover for contrast */
 }
 
-/* 🔹 Keep Mobile Layout Like the Image */
+/* Responsive Design for All Devices (Remove desktop-specific column layout) */
+/* No need for @media (min-width: 768px) since we’re using row layout everywhere */
+
+/* Adjust for smaller screens if needed */
 @media screen and (max-width: 767px) {
     .announcement {
-        flex-direction: row; /* Keep side-by-side layout */
-        width: 100%;
+        width: 100%; /* Full width on mobile */
     }
 
-    .announcement-content {
-        text-align: left; /* Keep text aligned to the left */
+    .announcement-container {
+        padding: 0 5%; /* Maintain side padding on mobile */
     }
 }
+
+/* Adjust for tablet and desktop to ensure consistent row layout */
+@media screen and (min-width: 768px) {
+    .announcement {
+        width: 100%; /* Full width on tablet and desktop, maintaining row layout */
+        max-width: 1000px; /* Limit width to match container */
+    }
+
+    .announcement-container {
+        padding: 0 5%; /* Maintain side padding on tablet/desktop */
+    }
+}
+
+/* ... (Rest of your CSS remains unchanged) ... */
 
 /* ======================================================
    📰 Berita Section Styling
@@ -780,7 +800,7 @@ html {
 /* 📌 Berita Section Container */
 #berita {
     padding: 60px 5%;
-    background: var(--secondary-color);
+    background: white;
     text-align: center;
     /*display: flex;*/ /* Remove flex to position title at top */
     flex-direction: column; /* Stack content vertically */
@@ -918,12 +938,11 @@ html {
 
 .berita-btn {
     position: relative;
-    background: rgba(0, 0, 0, 0.4); /* Semi-transparent */
-    color: white;
+    color: #555;
     border: none;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
+    font-size: 26px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
     z-index: 5; /* Above carousel but below navbar */
@@ -969,7 +988,7 @@ html {
 /* Responsive Design for Desktop (min-width: 1025px) */
 @media screen and (min-width: 1025px) {
     .berita-card {
-        width: calc(100% / 3 - 5px); /* 4 cards on desktop */
+        width: calc(100% / 3 - 50px); /* 4 cards on desktop */
     }
 }
 
@@ -1131,6 +1150,125 @@ html {
 
     #hero {
         margin-top: 10px; /* Adjust for mobile if navbar height changes */
+    }
+}
+
+
+
+/* ... (Previous CSS remains unchanged until the end) ... */
+
+/* ======================================================
+   👣 Footer Styling
+   ====================================================== */
+   .footer {
+    background: var(--primary-color); /* Brown background matching your theme */
+    color: #fff; /* White text */
+    padding: 20px 5%; /* Vertical padding and side padding for responsiveness */
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px; /* Limit width for desktop */
+    margin: 0 auto; /* Center horizontally */
+    padding: 10px 0; /* Additional vertical padding for content */
+}
+
+.footer-title {
+    font-family: "Lora", serif; /* Serif font for title, matching your theme */
+    font-size: 1.5rem; /* Larger, bold title */
+    font-weight: bold;
+    margin-bottom: 10px; /* Space below title */
+}
+
+.footer-address {
+    font-family: var(--font-body); /* Use Poppins for body text */
+    font-size: 0.9rem; /* Smaller text for address */
+    margin-bottom: 15px; /* Space below address */
+    line-height: 1.4; /* Improve readability */
+}
+
+.footer-social-title {
+    font-family: var(--font-body); /* Use Poppins for body text */
+    font-size: 1rem; /* Medium text for social title */
+    margin-bottom: 10px; /* Space below social title */
+}
+
+.footer-social-icons {
+    margin-bottom: 15px; /* Space below icons */
+}
+
+.social-icon {
+    display: inline-block;
+    width: 40px; /* Circular button size */
+    height: 40px;
+    background: var(--primary-color); /* Brown background matching footer */
+    border-radius: 50%; /* Circular shape */
+    margin: 0 10px; /* Spacing between icons */
+    line-height: 40px; /* Center icon vertically */
+    text-decoration: none;
+    color: #fff; /* White icons */
+    font-size: 1.2rem; /* Larger icons for visibility */
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth hover effects */
+}
+
+.social-icon:hover {
+    background: #7a3412; /* Darker brown on hover */
+    transform: scale(1.1); /* Slight scale on hover for interactivity */
+}
+
+.footer-copyright {
+    font-family: var(--font-body); /* Use Poppins for body text */
+    font-size: 0.8rem; /* Small text for copyright */
+    margin-top: 10px; /* Space above copyright */
+}
+
+/* 📱 Responsive Design for Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 15px 5%; /* Reduce padding on mobile */
+    }
+
+    .footer-content {
+        padding: 5px 0; /* Reduce vertical padding on mobile */
+    }
+
+    .footer-title {
+        font-size: 1.2rem; /* Reduce title size on mobile */
+    }
+
+    .footer-address {
+        font-size: 0.8rem; /* Reduce address size on mobile */
+    }
+
+    .footer-social-title {
+        font-size: 0.9rem; /* Reduce social title size on mobile */
+    }
+
+    .social-icon {
+        width: 30px; /* Smaller icons on mobile */
+        height: 30px;
+        font-size: 1rem; /* Smaller icon size on mobile */
+        margin: 0 8px; /* Reduce spacing between icons on mobile */
+        line-height: 30px; /* Adjust for smaller size */
+    }
+}
+
+/* 🖥️ Responsive Design for Tablet and Desktop (min-width: 769px) */
+@media screen and (min-width: 769px) {
+    .footer {
+        padding: 20px 5%; /* Maintain padding on tablet/desktop */
+    }
+
+    .footer-content {
+        padding: 10px 0; /* Maintain vertical padding on tablet/desktop */
+    }
+
+    .social-icon {
+        width: 40px; /* Maintain larger icons on tablet/desktop */
+        height: 40px;
+        font-size: 1.2rem; /* Maintain larger icon size on tablet/desktop */
+        margin: 0 10px; /* Maintain spacing between icons on tablet/desktop */
     }
 }
 
