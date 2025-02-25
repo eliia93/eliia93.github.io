@@ -46,17 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.classList.remove("active");
     });
 
-    // Submenu Toggle (Fix for mobile click and desktop hover)
+    // Submenu Toggle
     submenuParents.forEach(parent => {
         parent.addEventListener("click", function (e) {
             e.preventDefault();
             this.classList.toggle("active");
-            // Close other submenus to prevent multiple open at once
-            submenuParents.forEach(otherParent => {
-                if (otherParent !== this) {
-                    otherParent.classList.remove("active");
-                }
-            });
         });
     });
 
