@@ -10,7 +10,7 @@
     
         <!-- ✅ Correct FontAwesome Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Sf3ETSr8AndtaqLkRgD6DRUqlgSBNEIcdZ9YcA01xJwgAzB1eMlYRo29kQ9s/a4+gOyEA3OlgN8Y35qkgjDRQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- ✅ External CSS -->
         <link rel="stylesheet" href="style.css">
     </head>
@@ -28,77 +28,72 @@
     <div class="overlay" id="overlay"></div>
 
    <!-- 📌 Sidebar Menu -->
-<aside class="sidebar" id="sidebar">
-    <!-- 🔝 Sidebar Header with Close Button -->
-    <div class="sidebar-header">
-        <h2></h2>
-        <button class="close-sidebar" id="close-sidebar">
-            <i class="fas fa-times"></i> <!-- Close Icon -->
-        </button>
-    </div>
-
-    <!-- 🔎 Search Bar -->
+<aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">Menu</div>
     <div class="sidebar-search">
-        <input type="text" id="sidebar-search-input" class="search-box" placeholder="Search...">
+        <input type="text" class="search-box" placeholder="Search...">
     </div>
-
-    <!-- 📂 Sidebar Links -->
     <ul class="sidebar-links">
-        <li>
-            <a href="#"><i class="fas fa-home icon"></i> Beranda</a>
-        </li>
-    
-        <!-- Submenu Parent (Click to Expand in Sidebar) -->
+        <li><a href="#beranda"><i class="icon fas fa-home"></i> Beranda</a></li>
         <li class="has-submenu">
-            <a href="#"><i class="fas fa-bullhorn icon"></i> Sekretariat <i class="fas fa-chevron-down submenu-icon"></i></a>
+            <span><i class="icon fas fa-bullhorn"></i> Sekretariat <i class="submenu-icon">▼</i></span>
             <ul class="submenu">
-                <li><a href="#">Baptis</a></li>
-                <li><a href="#">Komuni Pertama</a></li>
-                <li><a href="#">Krisma</a></li>
-                <li><a href="#">Pernikahan</a></li>
-                <li><a href="#">Tobat</a></li>
-                <li><a href="#">Perminyakan</a></li>
-                <li><a href="#">Informasi</a></li>
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
             </ul>
         </li>
-    
-        <li>
-            <a href="#"><i class="fas fa-newspaper icon"></i> Gua Maria <i class="fas fa-chevron-down submenu-icon"></i></a>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-church"></i> Gua Maria <i class="submenu-icon">▼</i></span>
             <ul class="submenu">
-                <li><a href="#">Informasi</a></li>
-                <li><a href="#">Griya Hening</a></li>
-                <li><a href="#">Sejarah</a></li>
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
             </ul>
         </li>
-
-        <li>
-            <a href="#"><i class="fas fa-newspaper icon"></i> Berita </a>
-        </li>
-
-        <li>
-            <a href="#"><i class="fas fa-newspaper icon"></i> Pengumuman </i></a>
-        </li>
-
-        <li>
-            <a href="#"><i class="fas fa-newspaper icon"></i> Pastoral <i class="fas fa-chevron-down submenu-icon"></i></a>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-newspaper"></i> Berita Pertama <i class="submenu-icon">▼</i></span>
             <ul class="submenu">
-                <li><a href="#">DPP</a></li>
-                <li><a href="#">BGKP</a></li>
-                <li><a href="#">Lingkungan</a></li>
-                <li><a href="#">Stasi</a></li>
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
             </ul>
         </li>
-
-        <li>
-            <a href="#"><i class="fas fa-newspaper icon"></i> Tentang <i class="fas fa-chevron-down submenu-icon"></i></a>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-bullhorn"></i> Pengumuman <i class="submenu-icon">▼</i></span>
             <ul class="submenu">
-                <li><a href="#">Sejarah Paroki</a></li>
-                <li><a href="#">Peta Wilayah</a></li>
-                <li><a href="#">Tentang</a></li>
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
             </ul>
         </li>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-ring"></i> Pernikahan <i class="submenu-icon">▼</i></span>
+            <ul class="submenu">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-users"></i> Pastoral <i class="submenu-icon">▼</i></span>
+            <ul class="submenu">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-dove"></i> Tobat <i class="submenu-icon">▼</i></span>
+            <ul class="submenu">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+            </ul>
+        </li>
+        <li class="has-submenu">
+            <span><i class="icon fas fa-info-circle"></i> Tentang <i class="submenu-icon">▼</i></span>
+            <ul class="submenu">
+                <li><a href="#">Subitem 1</a></li>
+                <li><a href="#">Subitem 2</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><i class="icon fas fa-info"></i> Informasi</a></li>
     </ul>
-    
+    <button id="close-sidebar" class="close-sidebar">×</button>
 </aside>
 
 
@@ -158,9 +153,8 @@
         </div>
     </section>
     
-    <!-- 📢 Pengumuman Section -->
     <section id="pengumuman" class="section">
-        <h1 class="pengumuman-title">Berita</h1> <!-- 🔹 Title at the Top of Section -->
+        <h1 class="pengumuman-title">Berita</h1>
     
         <div class="announcement-container">
             <!-- Pengumuman Item 1 -->
@@ -168,8 +162,8 @@
                 <div class="announcement-image"></div>
                 <div class="announcement-content">
                     <h3 class="announcement-title">Title</h3>
-                    <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
-                    <a href="#" class="read-more">Baca selengkapnya...</a>
+                    <p class="announcement-body">Ini berisi cuplikan paragraf dari sebuah berita atau artikel…</p>
+                    <a href="#" class="read-more">Baca selengkapnya…</a>
                 </div>
             </div>
     
@@ -178,8 +172,8 @@
                 <div class="announcement-image"></div>
                 <div class="announcement-content">
                     <h3 class="announcement-title">Title</h3>
-                    <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
-                    <a href="#" class="read-more">Baca selengkapnya...</a>
+                    <p class="announcement-body">Ini berisi cuplikan paragraf dari sebuah berita atau artikel…</p>
+                    <a href="#" class="read-more">Baca selengkapnya…</a>
                 </div>
             </div>
     
@@ -188,18 +182,18 @@
                 <div class="announcement-image"></div>
                 <div class="announcement-content">
                     <h3 class="announcement-title">Title</h3>
-                    <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
-                    <a href="#" class="read-more">Baca selengkapnya...</a>
+                    <p class="announcement-body">Ini berisi cuplikan paragraf dari sebuah berita atau artikel…</p>
+                    <a href="#" class="read-more">Baca selengkapnya…</a>
                 </div>
             </div>
-
+    
             <!-- Pengumuman Item 4 -->
             <div class="announcement">
                 <div class="announcement-image"></div>
                 <div class="announcement-content">
                     <h3 class="announcement-title">Title</h3>
-                    <p>Ini berisi cuplikan paragraf dari sebuah berita atau artikel...</p>
-                    <a href="#" class="read-more">Baca selengkapnya...</a>
+                    <p class="announcement-body">Ini berisi cuplikan paragraf dari sebuah berita atau artikel…</p>
+                    <a href="#" class="read-more">Baca selengkapnya…</a>
                 </div>
             </div>
         </div>
@@ -269,6 +263,20 @@
         </div>
     </section>
 </main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <h2 class="footer-title">Paroki Santa Maria Blitar</h2>
+        <p class="footer-address">Jl. Cempaka No. 8, Sukorejo, Kec. Sukorejo, Kota Blitar, Jawa Timur 66121</p>
+        <p class="footer-social-title">Media Sosial kami</p>
+        <div class="footer-social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <p class="footer-copyright">Copyright © 2025 Komsos Sanmar</p>
+    </div>
+</footer>
 
     <!-- ✅ External JavaScript -->
     <script src="scripts.js"></script>
